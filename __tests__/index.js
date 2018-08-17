@@ -58,57 +58,47 @@ describe("Vending Machine", () => {
     });
   });
   describe("when consumer provides extra sufficient money and choice", () => {
-    it("should return the correct amount of change", () => {
-      expect(vendingMachine.provideChange(5.3)).toEqual([
-        { nickel: 1 },
-        { quarter: 1 },
-        { loonie: 1 },
-        { toonie: 1 }
-      ]);
+    it("should return the correct product, the correct amount of change, and deplete change reserves", () => {
+      expect(vendingMachine.makePurchase("cola", 5.3)).toEqual({
+        change: {
+          nickel: 1,
+          toonie: 1
+        },
+        coinsInMachine: {
+          nickel: 9,
+          toonie: 9
+        },
+        drink: {
+          name: "cola"
+        }
+      });
     });
-    it("should deplete change reserves from vending machine", () => {
-      expect(vendingMachine.provideChange(5.3)).toEqual([
-        { nickel: 9 },
-        { quarter: 9 },
-        { loonie: 9 },
-        { toonie: 9 }
-      ]);
+    it("should throw an error if product choice does exist", () => {
+      expect(vendingMachine.makePurchase("pepsi", 7)).toEqual(
+        "Sorry, we dont carry that.  How about cola?"
+      );
     });
-    it("should dispense the correct product", () => {
-      expect(vendingMachine.provideProduct("fanta")).toEqual("fanta");
+    it("should throw an error if product choice is not type of string", () => {
+      expect(vendingMachine.makePurchase(400, 7)).toEqual(
+        "Not a valid product choice!"
+      );
+    });
+    it("should throw an error if amount of money given is not a positive integer", () => {
+      expect(vendingMachine.makePurchase("cola", "seven")).toEqual(
+        "Payment error.  Please input money in number format"
+      );
     });
   });
   describe("when consumer provides choice but insufficient money", () => {
     it("should prompt consumer for more money", () => {
-      expect(vendingMachine.provideProduct("fanta")).toEqual(
+      expect(vendingMachine.makePurchase("fanta", 0.05)).toEqual(
         "Please insert more change!"
       );
     });
   });
   describe("when consumer provides exact change for product", () => {
     it("should return no change", () => {
-      expect(vendingMachine.provideChange(2.0)).toEqual(0);
-    });
-  });
-  describe("when consumer provides unavailable choice", () => {
-    it("should inform user their choice is not available", () => {
-      expect(vendingMachine.provideProduct("pepsi")).toEqual(
-        "Sorry we dont carry pepsi.  How about cola?"
-      );
-    });
-  });
-  describe("when item selection is not a string", () => {
-    it("should return a selection error", () => {
-      expect(vendingMachine.provideProduct(400)).toEqual(
-        "Selection error.  Please provide a string."
-      );
-    });
-  });
-  describe("when money input is not an integer", () => {
-    it("should return a payment error", () => {
-      expect(vendingMachine.provideProduct(400)).toEqual(
-        "Payment error.  Please provide an integer."
-      );
+      expect(vendingMachine.makePurchase("fanta", 1.77)).toEqual(0);
     });
   });
 });
