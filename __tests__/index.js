@@ -66,6 +66,9 @@ describe("Vending Machine", () => {
         },
         coinsInMachine: {
           nickel: 9,
+          dime: 10,
+          quarter: 10,
+          loonie: 10,
           toonie: 9
         },
         drink: {
@@ -98,7 +101,22 @@ describe("Vending Machine", () => {
   });
   describe("when consumer provides exact change for product", () => {
     it("should return no change", () => {
-      expect(vendingMachine.makePurchase("fanta", 1.77)).toEqual(0);
+      expect(vendingMachine.makePurchase("fanta", 1.77)).toEqual({
+        change: null,
+        coinsInMachine: {
+          nickel: 10,
+          dime: 10,
+          quarter: 20,
+          loonie: 10,
+          toonie: 10
+        },
+        drink: {
+          name: "fanta"
+        }
+      });
     });
   });
 });
+
+//TODO : What should happen if the person requests an item that is empty?
+//TODO: What should happen if the person puts in more money than the machine can give back in change??
