@@ -1,5 +1,6 @@
-const vendingMachine = require("../lib/vending-machine.js");
+const VendingMachine = require("../lib/vending-machine.js");
 
+let vendingMachine = new VendingMachine();
 describe("Vending Machine", () => {
   describe("when list of inventory (name and amount) is requested", () => {
     it("should return an array of objects", () => {
