@@ -18,6 +18,21 @@ describe("Vending Machine", () => {
         count: 12
       });
     });
+    it("should throw an error if item to be refilled does not exist", () => {
+      expect(vendingMachine.refillInventory("pepsi", 7)).toEqual(
+        "Not a valid stock choice!"
+      );
+    });
+    it("should throw an error if item to be refilled is not type of string", () => {
+      expect(vendingMachine.refillInventory(400, 7)).toEqual(
+        "Not a valid stock choice!"
+      );
+    });
+    it("should throw an error if amount to be refilled is not a positive integer", () => {
+      expect(vendingMachine.refillInventory("cola", "seven")).toEqual(
+        "Please indicate amount to be refilled using numbers greater than 0"
+      );
+    });
   });
   describe("when change is resupplied to the vending machine", () => {
     it("should return an updated count of the coins available", () => {
