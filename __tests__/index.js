@@ -3,18 +3,19 @@ const VendingMachine = require("../lib/vending-machine.js");
 let vendingMachine = new VendingMachine();
 describe("Vending Machine", () => {
   describe("when list of inventory (name and amount) is requested", () => {
-    it("should return an array of objects", () => {
-      expect(vendingMachine.getInventory()).toEqual([
-        { cola: 10 },
-        { fanta: 8 },
-        { "fruit punch": 5 }
-      ]);
+    it("should return a list of objects", () => {
+      expect(vendingMachine.getInventory()).toEqual({
+        cola: { count: 10 },
+        fanta: { count: 8 },
+        "fruit punch": { count: 5 }
+      });
     });
   });
   describe("when inventory is refilled", () => {
     it("should return object of the item that has been refilled", () => {
-      expect(vendingMachine.refillInventory({ "fruit punch": 7 })).toEqual({
-        "fruit punch": 12
+      expect(vendingMachine.refillInventory("fruit punch", 7)).toEqual({
+        name: "fruit punch",
+        count: 12
       });
     });
   });
