@@ -10,7 +10,7 @@
     "test": "npx jest"
   },
   "keywords": [],
-  "author": "Author: P. Chong, ADP Student @ RED Academy 2018 Q3",
+  "author": "P. Chong, ADP Student @ RED Academy 2018 Q3",
   "license": "ISC",
   "devDependencies": {
     "jest-cli": "^23.5.0"
