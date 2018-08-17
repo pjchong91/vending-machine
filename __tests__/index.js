@@ -37,21 +37,22 @@ describe("Vending Machine", () => {
   describe("when change is resupplied to the vending machine", () => {
     it("should return an updated count of the coins available", () => {
       expect(vendingMachine.resupplyChange("quarter", 10)).toEqual({
-        quarter: { count: 20 }
+        name: "quarter",
+        count: 20
       });
     });
     it("should throw an error if coin to be refilled does not exist", () => {
-      expect(vendingMachine.refillInventory("rupee", 7)).toEqual(
+      expect(vendingMachine.resupplyChange("rupee", 7)).toEqual(
         "Not a valid currency choice!"
       );
     });
     it("should throw an error if coin to be refilled is not type of string", () => {
-      expect(vendingMachine.refillInventory(400, 7)).toEqual(
+      expect(vendingMachine.resupplyChange(400, 7)).toEqual(
         "Not a valid currency choice!"
       );
     });
     it("should throw an error if amount to be refilled is not a positive integer", () => {
-      expect(vendingMachine.refillInventory("loonie", "seven")).toEqual(
+      expect(vendingMachine.resupplyChange("loonie", "seven")).toEqual(
         "Please indicate amount to be refilled using numbers greater than 0"
       );
     });
