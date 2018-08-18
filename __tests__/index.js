@@ -156,6 +156,24 @@ describe("Vending Machine", () => {
       });
     });
   });
+
+  describe("machine owner wants to change products", () => {
+    it("should replace old item with new item and be reflected in inventory", () => {
+      expect(
+        vendingMachine5.replaceProduct("pocky", "hi-chew", 10, 5.26)
+      ).toEqual(
+        "Great we have taken out pocky and added hi-chew to the machine.  It costs 5.26!"
+      );
+    });
+    it("should prompt the machine to be restocked for the requested item", () => {
+      expect(vendingMachine5.getInventory()).toEqual({
+        cola: { count: 10 },
+        fanta: { count: 8 },
+        "fruit punch": { count: 5 },
+        "hi-chew": { count: 10 }
+      });
+    });
+  });
 });
 
 //TODO: What should happen if the person puts in more money than the machine can give back in change??
