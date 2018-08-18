@@ -27,6 +27,9 @@
    - it prompts the user to insert more change
 1. When change is to be returned
    - it should return the smallest amount of coins required to provide the accurate amount of change
+1. When user requests purchase of item has 0 stock
+   - it should prompt the user of product inavailability
+   - it should run function to restock the empty item with 10 items
 
 ## Questions and Learnings
 

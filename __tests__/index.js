@@ -4,6 +4,7 @@ let vendingMachine = new VendingMachine();
 let vendingMachine2 = new VendingMachine();
 let vendingMachine3 = new VendingMachine();
 let vendingMachine4 = new VendingMachine();
+let vendingMachine5 = new VendingMachine();
 
 describe("Vending Machine", () => {
   describe("when list of inventory (name and amount) is requested", () => {
@@ -142,21 +143,20 @@ describe("Vending Machine", () => {
   });
   describe("when consumer selects a product with 0 stock", () => {
     it("should return a message informing consumer of no stock", () => {
-      expect(vendingMachine.makePurchase("pocky", 8.17)).toEqual(
+      expect(vendingMachine5.makePurchase("pocky", 8.17)).toEqual(
         "Oops. We seem to be fresh out of that.  Please make another selection"
       );
     });
     it("should prompt the machine to be restocked for the requested item", () => {
-      expect(vendingMachine.getInventory()).toEqual({
+      expect(vendingMachine5.getInventory()).toEqual({
         cola: { count: 10 },
         fanta: { count: 8 },
         "fruit punch": { count: 5 },
-        pocky: { count: 0 }
+        pocky: { count: 10 }
       });
     });
   });
 });
 
-//TODO : What should happen if the person requests an item that is empty?
 //TODO: What should happen if the person puts in more money than the machine can give back in change??
 //TODO: Should handle only to 2 decimal places
