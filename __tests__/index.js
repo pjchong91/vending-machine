@@ -1,6 +1,8 @@
 const VendingMachine = require("../lib/vending-machine.js");
 
 let vendingMachine = new VendingMachine();
+let vendingMachine2 = new VendingMachine();
+let vendingMachine3 = new VendingMachine();
 describe("Vending Machine", () => {
   describe("when list of inventory (name and amount) is requested", () => {
     it("should return a list of objects", () => {
@@ -59,7 +61,7 @@ describe("Vending Machine", () => {
   });
   describe("when consumer provides extra sufficient money and choice", () => {
     it("should return the correct product, the correct amount of change, and deplete change reserves", () => {
-      expect(vendingMachine.makePurchase("cola", 5.3)).toEqual({
+      expect(vendingMachine3.makePurchase("cola", 5.3)).toEqual({
         change: {
           nickel: 1,
           toonie: 1
@@ -101,12 +103,12 @@ describe("Vending Machine", () => {
   });
   describe("when consumer provides exact change for product", () => {
     it("should return no change", () => {
-      expect(vendingMachine.makePurchase("fanta", 1.77)).toEqual({
+      expect(vendingMachine2.makePurchase("fanta", 1.77)).toEqual({
         change: null,
         coinsInMachine: {
           nickel: 10,
           dime: 10,
-          quarter: 20,
+          quarter: 10,
           loonie: 10,
           toonie: 10
         },
@@ -120,3 +122,4 @@ describe("Vending Machine", () => {
 
 //TODO : What should happen if the person requests an item that is empty?
 //TODO: What should happen if the person puts in more money than the machine can give back in change??
+//TODO: Should handle only to 2 decimal places
