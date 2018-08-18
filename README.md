@@ -4,10 +4,29 @@
 
 ## Description and Objective:
 
-- The objective for this project is to create a vending machine in Javascript. A test-driven development(TDD) approach should be taken and 10 well-formed and passing tests should be created.
+- The objective for this project is to create a vending machine in Javascript. A test-driven development(TDD) approach should be taken and 10 well-formed and tests should be created and eventually passed.
 - The vending machine does not require a UI
 
 <!-- More information about the project and learnings can be found on the wiki. -->
+
+## 10 Tests:
+
+1. A list of inventory can be requested
+   - it should return a list of items and their counts
+1. When inventory is refilled
+   - it should return the name of the item filled and the new count
+   - this test assumes one item is refilled at a time
+1. When change is resupplied
+   - it should return the name of the coin filled and the new count
+   - this test assumes one type of coin is refilled at a time
+1. When user makes purchase request with more money than is required
+   - it should return the correct product, the correct amount of change(in the form of coins), and coin reserves in the machine should be updated
+1. When user makes purchase request with the exact amount of money that is required
+   - it should return the correct product, change as null, and coin reserves should in the machine should show no change
+1. When user attempts to make purchase with an insufficient amount of money
+   - it prompts the user to insert more change
+1. When change is to be returned
+   - it should return the smallest amount of coins required to provide the accurate amount of change
 
 ## Questions and Learnings
 

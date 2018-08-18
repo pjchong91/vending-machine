@@ -3,13 +3,16 @@ const VendingMachine = require("../lib/vending-machine.js");
 let vendingMachine = new VendingMachine();
 let vendingMachine2 = new VendingMachine();
 let vendingMachine3 = new VendingMachine();
+let vendingMachine4 = new VendingMachine();
+
 describe("Vending Machine", () => {
   describe("when list of inventory (name and amount) is requested", () => {
     it("should return a list of objects", () => {
       expect(vendingMachine.getInventory()).toEqual({
         cola: { count: 10 },
         fanta: { count: 8 },
-        "fruit punch": { count: 5 }
+        "fruit punch": { count: 5 },
+        pocky: { count: 0 }
       });
     });
   });
@@ -78,7 +81,26 @@ describe("Vending Machine", () => {
         }
       });
     });
-    it("should throw an error if product choice does exist", () => {
+    it("should dispense the smallest number of coins required to provide accurate change. ie. for $3.20 of change, it should return 1 toonie, 1 loonie, and 2 times", () => {
+      expect(vendingMachine4.makePurchase("fruit punch", 8.45)).toEqual({
+        change: {
+          dime: 2,
+          loonie: 1,
+          toonie: 1
+        },
+        coinsInMachine: {
+          nickel: 10,
+          dime: 8,
+          quarter: 10,
+          loonie: 9,
+          toonie: 9
+        },
+        drink: {
+          name: "fruit punch"
+        }
+      });
+    });
+    it("should throw an error if product choice does not exist", () => {
       expect(vendingMachine.makePurchase("pepsi", 7)).toEqual(
         "Sorry, we dont carry that.  How about cola?"
       );
@@ -115,6 +137,21 @@ describe("Vending Machine", () => {
         drink: {
           name: "fanta"
         }
+      });
+    });
+  });
+  describe("when consumer selects a product with 0 stock", () => {
+    it("should return a message informing consumer of no stock", () => {
+      expect(vendingMachine.makePurchase("pocky", 8.17)).toEqual(
+        "Oops. We seem to be fresh out of that.  Please make another selection"
+      );
+    });
+    it("should prompt the machine to be restocked for the requested item", () => {
+      expect(vendingMachine.getInventory()).toEqual({
+        cola: { count: 10 },
+        fanta: { count: 8 },
+        "fruit punch": { count: 5 },
+        pocky: { count: 0 }
       });
     });
   });
