@@ -21,6 +21,8 @@
    - this test assumes one type of coin is refilled at a time
 1. When user makes purchase request with more money than is required
    - it should return the correct product, the correct amount of change(in the form of coins), and coin reserves in the machine should be updated
+1. When user makes purchase request and machine is unable to supply appropriate change
+   - it should prompt consumer to retry purchase with less money
 1. When user makes purchase request with the exact amount of money that is required
    - it should return the correct product, change as null, and coin reserves should in the machine should show no change
 1. When user attempts to make purchase with an insufficient amount of money
