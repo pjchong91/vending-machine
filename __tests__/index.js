@@ -126,6 +126,13 @@ describe("Vending Machine", () => {
       );
     });
   });
+  describe("when consumer provides more money than the machine can give change for", () => {
+    it("should prompt consumer to input less money", () => {
+      expect(vendingMachine.makePurchase("fanta", 5000)).toEqual(
+        "Not enough change in the machine.  Please input less money!"
+      );
+    });
+  });
   describe("when consumer provides exact change for product", () => {
     it("should return no change", () => {
       expect(vendingMachine2.makePurchase("fanta", 1.77)).toEqual({
