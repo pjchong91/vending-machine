@@ -30,6 +30,8 @@
 1. When user requests purchase of item has 0 stock
    - it should prompt the user of product inavailability
    - it should run function to restock the empty item with 10 items
+1. When machine owner wants to change products
+   - it should replace a pre-existing item with a new item and the inventory should reflect the replacement
 
 ## Questions and Learnings
 

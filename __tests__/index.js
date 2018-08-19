@@ -5,6 +5,8 @@ let vendingMachine2 = new VendingMachine();
 let vendingMachine3 = new VendingMachine();
 let vendingMachine4 = new VendingMachine();
 let vendingMachine5 = new VendingMachine();
+let vendingMachine6 = new VendingMachine();
+let vendingMachine7 = new VendingMachine();
 
 describe("Vending Machine", () => {
   describe("when list of inventory (name and amount) is requested", () => {
@@ -160,21 +162,39 @@ describe("Vending Machine", () => {
   describe("machine owner wants to change products", () => {
     it("should replace old item with new item and be reflected in inventory", () => {
       expect(
-        vendingMachine5.replaceProduct("pocky", "hi-chew", 10, 5.26)
+        vendingMachine7.replaceProduct("pocky", "hi-chew", 10, 5.26)
       ).toEqual(
         "Great we have taken out pocky and added hi-chew to the machine.  It costs 5.26!"
       );
     });
-    it("should prompt the machine to be restocked for the requested item", () => {
-      expect(vendingMachine5.getInventory()).toEqual({
+    it("should show the machine has been updated with the new product", () => {
+      expect(vendingMachine7.getInventory()).toEqual({
         cola: { count: 10 },
         fanta: { count: 8 },
         "fruit punch": { count: 5 },
         "hi-chew": { count: 10 }
       });
     });
+    it("should throw an error if the old product choice does not exist,  or if the new and old products are not a string", () => {
+      expect(vendingMachine6.replaceProduct("pocky", 400, 10, 5.26)).toEqual(
+        "Not a valid item choice!"
+      );
+    });
+    it("should throw an error if the amount of new item to be filled is not a positive integer", () => {
+      expect(
+        vendingMachine6.replaceProduct("pocky", "hi-chew", -10, 10)
+      ).toEqual(
+        "Please indicate amount to be refilled using numbers greater than 0"
+      );
+    });
+    it("should throw an error if the cost of new item to be filled is not a positive integer", () => {
+      expect(
+        vendingMachine6.replaceProduct("pocky", "hi-chew", 10, "ten")
+      ).toEqual(
+        "Please indicate cost of item to be refilled to be refilled using numbers greater than 0"
+      );
+    });
   });
 });
 
 //TODO: What should happen if the person puts in more money than the machine can give back in change??
-//TODO: Should handle only to 2 decimal places
