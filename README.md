@@ -35,6 +35,11 @@
 1. When machine owner wants to change products
    - it should replace a pre-existing item with a new item and the inventory should reflect the replacement
 
+Note: All inputs are also tested for type and value
+
+Vending Machine Tests in VS Code Terminal:
+![Vending Machine Tests](./VendingMachineTests.png?raw=true "Vending Machine Tests")
+
 ## Questions and Learnings
 
 - TDD Approach to Development
