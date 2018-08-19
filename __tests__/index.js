@@ -203,5 +203,3 @@ describe("Vending Machine", () => {
     });
   });
 });
-
-//TODO: What should happen if the person puts in more money than the machine can give back in change??
